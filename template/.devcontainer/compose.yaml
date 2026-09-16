@@ -1,0 +1,20 @@
+name: bench
+
+services:
+  dev:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+      args:
+        UID: ${DEV_UID:-1000}
+        GID: ${DEV_GID:-1000}
+    init: true
+    stdin_open: true
+    tty: true
+    working_dir: /workspace
+    command: bash
+    volumes:
+      - ..:/workspace
+      - ${HOME}/.local/dev-base/vimrc:/home/dev/.vimrc:ro
+      - ${HOME}/.gitconfig:/home/dev/.gitconfig:ro
+      - ${HOME}/.claude:/home/dev/.claude

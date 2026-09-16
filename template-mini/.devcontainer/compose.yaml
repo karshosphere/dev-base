@@ -1,0 +1,16 @@
+name: myproject
+
+services:
+  dev:
+    image: dev-base:latest
+    pull_policy: never
+    init: true
+    stdin_open: true
+    tty: true
+    working_dir: /workspace
+    command: bash
+    volumes:
+      - ..:/workspace
+      - ${HOME}/.local/dev-base/vimrc:/home/dev/.vimrc:ro
+      - ${HOME}/.gitconfig:/home/dev/.gitconfig:ro
+      - ${HOME}/.claude:/home/dev/.claude
